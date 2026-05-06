@@ -214,16 +214,3 @@ http://localhost:3000/login
 * Implementasi middleware authorization
 * Relasi database many-to-many
 * Integrasi backend + view (EJS)
-
----
-
-## 👨‍💻 Author
-
-* Nama: (Isi nama kamu)
-* NIM: (Isi NIM kamu)
-
----
-
-## 📄 Lisensi
-
-Untuk keperluan pembelajaran.
