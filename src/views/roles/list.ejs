@@ -1,0 +1,48 @@
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-lg font-semibold text-gray-700">Daftar Roles</h2>
+  <% if (user && user.permissions.includes('role:create')) { %>
+  <a href="/roles/create"
+     class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
+    + Tambah Role
+  </a>
+  <% } %>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+  <table class="w-full text-sm">
+    <thead class="bg-gray-50 border-b">
+      <tr>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Role</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Dibuat</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <% roles.forEach(function(role) { %>
+      <tr class="hover:bg-gray-50">
+        <td class="px-6 py-4 text-gray-500"><%= role.id %></td>
+        <td class="px-6 py-4 font-medium text-gray-900"><%= role.name %></td>
+        <td class="px-6 py-4 text-gray-500">
+          <%= new Date(role.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }) %>
+        </td>
+        <td class="px-6 py-4">
+          <% if (user && user.permissions.includes('role:delete')) { %>
+          <form method="POST" action="/roles/<%= role.id %>/delete" class="inline"
+                onsubmit="return confirm('Hapus role \"<%= role.name %>\"? User dengan role ini akan kehilangan aksesnya.')">
+            <button type="submit" class="text-red-600 hover:text-red-800 text-xs font-medium">
+              Hapus
+            </button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+      <% }) %>
+      <% if (roles.length === 0) { %>
+      <tr>
+        <td colspan="4" class="px-6 py-8 text-center text-gray-400">Belum ada role</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

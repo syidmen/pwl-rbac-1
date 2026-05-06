@@ -1,0 +1,60 @@
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-lg font-semibold text-gray-700">Daftar Permissions</h2>
+  <div class="flex gap-2">
+    <% if (user && user.permissions.includes('permission:assign')) { %>
+    <a href="/permissions/assign"
+       class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition-colors">
+      Assign ke Role
+    </a>
+    <% } %>
+    <% if (user && user.permissions.includes('permission:create')) { %>
+    <a href="/permissions/create"
+       class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
+      + Tambah
+    </a>
+    <% } %>
+  </div>
+</div>
+
+<div class="bg-white rounded-lg shadow overflow-hidden">
+  <table class="w-full text-sm">
+    <thead class="bg-gray-50 border-b">
+      <tr>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Permission</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Resource</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+        <th class="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      <% permissions.forEach(function(perm) { %>
+      <tr class="hover:bg-gray-50">
+        <td class="px-6 py-4 text-gray-500"><%= perm.id %></td>
+        <td class="px-6 py-4">
+          <code class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs font-mono">
+            <%= perm.name %>
+          </code>
+        </td>
+        <td class="px-6 py-4 text-gray-600"><%= perm.resource %></td>
+        <td class="px-6 py-4 text-gray-600"><%= perm.action %></td>
+        <td class="px-6 py-4">
+          <% if (user && user.permissions.includes('permission:delete')) { %>
+          <form method="POST" action="/permissions/<%= perm.id %>/delete" class="inline"
+                onsubmit="return confirm('Hapus permission \"<%= perm.name %>\"?')">
+            <button type="submit" class="text-red-600 hover:text-red-800 text-xs font-medium">
+              Hapus
+            </button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+      <% }) %>
+      <% if (permissions.length === 0) { %>
+      <tr>
+        <td colspan="5" class="px-6 py-8 text-center text-gray-400">Belum ada permission</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

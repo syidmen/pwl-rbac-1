@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md text-center">
+    <div class="text-5xl font-bold text-red-500 mb-4">403</div>
+    <h1 class="text-xl font-bold text-gray-800 mb-2"><%= title %></h1>
+    <p class="text-gray-600 text-sm mb-6"><%= message %></p>
+    <div class="flex gap-3 justify-center">
+      <button onclick="history.back()"
+        class="bg-gray-200 text-gray-700 px-5 py-2 rounded text-sm hover:bg-gray-300 transition-colors">
+        Kembali
+      </button>
+      <a href="/users"
+        class="bg-blue-600 text-white px-5 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
+        Beranda
+      </a>
+    </div>
+  </div>
+</body>
+</html>

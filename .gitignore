@@ -1,0 +1,39 @@
+# Materi
+Materi*.md
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Bun
+bun.lock
+.bun/
+
+# Build output
+dist/
+build/
+*.js.map
+
+# TypeScript
+*.tsbuildinfo
+
+# TailwindCSS generated
+public/css/tailwind.css
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,33 @@
+<aside class="w-64 bg-gray-800 text-white min-h-screen flex flex-col">
+  <div class="p-4 text-lg font-bold border-b border-gray-700">
+    RBAC System
+  </div>
+
+  <nav class="flex-1 py-2">
+    <% if (user && user.permissions.includes('user:view')) { %>
+    <a href="/users"
+       class="block px-4 py-3 hover:bg-gray-700 transition-colors text-sm">
+      Users
+    </a>
+    <% } %>
+
+    <% if (user && user.permissions.includes('role:view')) { %>
+    <a href="/roles"
+       class="block px-4 py-3 hover:bg-gray-700 transition-colors text-sm">
+      Roles
+    </a>
+    <% } %>
+
+    <% if (user && user.permissions.includes('permission:view')) { %>
+    <a href="/permissions"
+       class="block px-4 py-3 hover:bg-gray-700 transition-colors text-sm">
+      Permissions
+    </a>
+    <% } %>
+  </nav>
+
+  <div class="p-4 border-t border-gray-700 text-xs text-gray-400 space-y-1">
+    <p>Role ID: <%= user ? user.role_id : '-' %></p>
+    <p>Permissions: <%= user ? user.permissions.length : 0 %></p>
+  </div>
+</aside>
